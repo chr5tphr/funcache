@@ -1,4 +1,5 @@
 import pickle
+import os
 
 from .hashing import ext_hash
 
