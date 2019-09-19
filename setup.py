@@ -6,7 +6,7 @@ setup(
     version = "0.1",
     packages=find_packages(),
     install_requires=[
-        'metrohash-python>=1.13.post2',
+        'metrohash-python>=1.1.3.post2',
     ],
     extra_require={
         'torch': ['torch>=1.2.0'],
