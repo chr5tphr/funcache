@@ -20,5 +20,6 @@ def cache(default_cache='.__cache__'):
                 return result
             else:
                 return func(*args, **kwargs)
+        wrapper.__wrapped__ = func
         return wrapper
     return decorator

@@ -21,11 +21,21 @@ for size in [1024, 2048, 4096, 8192]:
     weight = np.zeros((size, size))
     bias = np.zeros((size,))
 
-    # caching can be disabled by setting keyword argument '_cache' to None
-    dtime_u = timeit(lambda: linear(data, weight, bias, _cache=None), number=1)
-    # cache dir can also be set using the keyword argument '_cache'
-    dtime_1 = timeit(lambda: linear(data, weight, bias, _cache=cache_path), number=1)
+    # the original, uncached function can be accessed as linear.__wrapped__
+    dtime_u = timeit(
+        lambda: linear.__wrapped__(data, weight, bias),
+        number=1
+    )
+
+    # caching path can also be set using the keyword argument '_cache',
+    # and disabled by setting it to None
+    dtime_1 = timeit(
+        lambda: linear(data, weight, bias, _cache=cache_path),
+        number=1
+    )
+
     dtime_2 = timeit(lambda: linear(data, weight, bias), number=1)
+
     print("Size: {}".format(size))
     print("    Uncached: {:.3f}s".format(dtime_u))
     print("    Cached 1: {:.3f}s".format(dtime_1))
