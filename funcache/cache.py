@@ -16,7 +16,7 @@ def cache(default_cache='.__cache__'):
                 else:
                     result = func(*args, **kwargs)
                     with open(fname, 'wb') as fp:
-                        pickle.dump(result, fp)
+                        pickle.dump(result, fp, protocol=4)
                 return result
             else:
                 return func(*args, **kwargs)
